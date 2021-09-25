@@ -13,15 +13,28 @@
             ></v-text-field>
             </v-col>
 
-            {{this.data}}
+        </v-row>
+        <v-row>
+            <v-card v-for="(food, i) in this.data" :key="i">
+                <v-col cols="12" class="mx-5 my-3">
+            
+                    <v-card-title>
+                        {{food.name}}
+                    </v-card-title>
+                    <v-card-text>
+                        {{food.image}}
+                    </v-card-text>
 
+                </v-col>
+            
+            </v-card>
         </v-row>
     </v-container>
 </template>
 
 <script>
 
-import axios from 'axios';
+// import axios from 'axios';
     export default {
         name: 'Index',
         data: () => ({
@@ -30,17 +43,49 @@ import axios from 'axios';
         }),
         watch: {
             search(){
-                axios.post('/api/food', {
-                    keyword: this.search,
-                })
-                .then(function (res) {
-                    this.data = res;
-                })
-                .catch(function (error) {
-                    console.log(error);
-                });
+                console.log(this.data)
+                // axios.post('/api/food', {
+                //     keyword: this.search,
+                // })
+                // .then(function (res) {
+                //     this.data = res;
+                // })
+                // .catch(function (error) {
+                //     console.log(error);
+                // });
                 if(this.search == '肉'){
-                    this.data = '野菜';
+                    this.data = [
+                        {
+                            name: '野菜',
+                            image: 'test.png',
+                        },{
+                            name: '野菜',
+                            image: 'test.png',
+                        },{
+                            name: '野菜',
+                            image: 'test.png',
+                        },{
+                            name: '野菜',
+                            image: 'test.png',
+                        },
+                    ];
+                }
+                if(this.search == '魚'){
+                    this.data = [
+                        {
+                            name: '味噌汁',
+                            image: 'test.png',
+                        },{
+                            name: '野菜',
+                            image: 'test.png',
+                        },{
+                            name: '野菜',
+                            image: 'test.png',
+                        },{
+                            name: '野菜',
+                            image: 'test.png',
+                        },
+                    ];
                 }
                 
             }

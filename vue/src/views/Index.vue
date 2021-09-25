@@ -6,7 +6,7 @@
                 cols="12"
             >
             <v-text-field
-                class="mt-5"
+                class="mt-3"
                 label="検索"
                 outlined
                 v-model="search"
@@ -15,15 +15,15 @@
 
         </v-row>
         <v-row>
-            <v-card v-for="(food, i) in this.data" :key="i">
-                <v-col cols="12" class="mx-5 my-3">
+            <v-card cols="5" class="my-3" v-for="(food, i) in this.data" :key="i">
+                <v-col>
             
                     <v-card-title>
-                        {{food.name}}
+                        <v-img :src="food.image" />
                     </v-card-title>
-                    <v-card-text>
-                        {{food.image}}
-                    </v-card-text>
+                    <v-card-subtitle>
+                        {{food.name}}
+                    </v-card-subtitle>
 
                 </v-col>
             
@@ -57,35 +57,46 @@
                     this.data = [
                         {
                             name: '野菜',
-                            image: 'test.png',
-                        },{
+                            image: 'https://3.bp.blogspot.com/-v3bUhbtBi1Y/UUFxxbikL-I/AAAAAAAAO1A/vqZw9bYuabY/s500/vegetable.png',
+                        },
+                        {
                             name: '野菜',
-                            image: 'test.png',
-                        },{
+                            image: 'https://3.bp.blogspot.com/-v3bUhbtBi1Y/UUFxxbikL-I/AAAAAAAAO1A/vqZw9bYuabY/s500/vegetable.png',
+                        },
+                        {
                             name: '野菜',
-                            image: 'test.png',
-                        },{
+                            image: 'https://3.bp.blogspot.com/-v3bUhbtBi1Y/UUFxxbikL-I/AAAAAAAAO1A/vqZw9bYuabY/s500/vegetable.png',
+                        },
+                        {
                             name: '野菜',
-                            image: 'test.png',
+                            image: 'https://3.bp.blogspot.com/-v3bUhbtBi1Y/UUFxxbikL-I/AAAAAAAAO1A/vqZw9bYuabY/s500/vegetable.png',
                         },
                     ];
-                }
-                if(this.search == '魚'){
+                }else if(this.search == '魚'){
                     this.data = [
                         {
-                            name: '味噌汁',
-                            image: 'test.png',
-                        },{
                             name: '野菜',
-                            image: 'test.png',
-                        },{
+                            image: 'https://3.bp.blogspot.com/-v3bUhbtBi1Y/UUFxxbikL-I/AAAAAAAAO1A/vqZw9bYuabY/s500/vegetable.png',
+                        },
+                        {
                             name: '野菜',
-                            image: 'test.png',
-                        },{
+                            image: 'https://3.bp.blogspot.com/-v3bUhbtBi1Y/UUFxxbikL-I/AAAAAAAAO1A/vqZw9bYuabY/s500/vegetable.png',
+                        },
+                        {
                             name: '野菜',
-                            image: 'test.png',
+                            image: 'https://3.bp.blogspot.com/-v3bUhbtBi1Y/UUFxxbikL-I/AAAAAAAAO1A/vqZw9bYuabY/s500/vegetable.png',
+                        },
+                        {
+                            name: '野菜',
+                            image: 'https://3.bp.blogspot.com/-v3bUhbtBi1Y/UUFxxbikL-I/AAAAAAAAO1A/vqZw9bYuabY/s500/vegetable.png',
+                        },
+                        {
+                            name: '野菜',
+                            image: 'https://3.bp.blogspot.com/-v3bUhbtBi1Y/UUFxxbikL-I/AAAAAAAAO1A/vqZw9bYuabY/s500/vegetable.png',
                         },
                     ];
+                }else{
+                    this.data = []
                 }
                 
             }

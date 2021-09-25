@@ -14,20 +14,15 @@
             </v-col>
 
         </v-row>
-        <v-row>
-            <v-card cols="5" class="my-3" v-for="(food, i) in this.data" :key="i">
-                <v-col>
-            
+        <v-row class="card">
+            <v-col cols="6" md="4" v-for="(food, i) in this.data" :key="i">
+                <v-card>
                     <v-card-title>
                         <v-img :src="food.image" />
-                    </v-card-title>
-                    <v-card-subtitle>
                         {{food.name}}
-                    </v-card-subtitle>
-
-                </v-col>
-            
-            </v-card>
+                    </v-card-title>
+                </v-card>
+            </v-col>
         </v-row>
     </v-container>
 </template>
@@ -43,7 +38,6 @@
         }),
         watch: {
             search(){
-                console.log(this.data)
                 // axios.post('/api/food', {
                 //     keyword: this.search,
                 // })
@@ -94,6 +88,10 @@
                             name: '野菜',
                             image: 'https://3.bp.blogspot.com/-v3bUhbtBi1Y/UUFxxbikL-I/AAAAAAAAO1A/vqZw9bYuabY/s500/vegetable.png',
                         },
+                        {
+                            name: '野菜',
+                            image: 'https://3.bp.blogspot.com/-v3bUhbtBi1Y/UUFxxbikL-I/AAAAAAAAO1A/vqZw9bYuabY/s500/vegetable.png',
+                        },
                     ];
                 }else{
                     this.data = []
@@ -103,3 +101,10 @@
         }
     }
 </script>
+
+<style>
+.card{
+    display: flex;
+    justify-content: space-evenly;
+}
+</style>

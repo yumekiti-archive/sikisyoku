@@ -6,13 +6,13 @@
       dark
     >
       <div class="d-flex align-center">
-        <h1>色食</h1>
+        <h1 @click="$router.push('/').catch(() => {})">色食</h1>
       </div>
 
       <v-spacer></v-spacer>
       
       <!-- ナビバー -->
-      <v-app-bar-nav-icon @click="$router.push('/signin')" />
+      <NavList />
 
     </v-app-bar>
 
@@ -23,12 +23,12 @@
 </template>
 
 <script>
+import NavList from '@/components/NavList'
 
 export default {
   name: 'App',
-
-  data: () => ({
-    //
-  }),
+  components: {
+    NavList,
+  },
 };
 </script>

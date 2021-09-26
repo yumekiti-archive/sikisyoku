@@ -21,4 +21,5 @@ Route::post('/signup', 'UserController@signup');
 Route::post('/signin', 'UserController@signin');
 Route::get('/user', 'UserController@index')->middleware('auth:sanctum');
 
+Route::get('/food', 'FoodController@index');
 Route::post('/food', 'FoodController@search');

@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Signin from '../views/Signin.vue'
 import Index from '../views/Index.vue'
+import Food from '../views/Food.vue'
 
 Vue.use(VueRouter)
 
@@ -13,17 +14,22 @@ const routes = [
     component: Index
   },
   {
+    path: '/food/:id',
+    name: 'Food',
+    component: Food
+  },
+  {
     path: '/signin',
     name: 'Signin',
     component: Signin
   },
   {
-    path: '/home',
-    name: 'Home',
+    path: '/signup',
     component: Home
   },
   {
-    path: '/signup',
+    path: '/home',
+    name: 'Home',
     component: Home
   },
   {

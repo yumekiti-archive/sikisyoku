@@ -12,7 +12,7 @@
       <v-spacer></v-spacer>
       
       <!-- ナビバー -->
-      <v-app-bar-nav-icon @click="$router.push('/signin')"/>
+      <v-app-bar-nav-icon @click="$router.push('/signin')" />
 
     </v-app-bar>
 

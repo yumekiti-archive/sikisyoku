@@ -12,9 +12,9 @@
             </v-col>
         </v-row>
 
-        <p class="mt-5">
-            以下この食べ物に合う料理
-        </p>
+        <v-row class="mt-5">
+            以下この食べ物に合う料理や食材
+        </v-row>
 
     </v-container>
 </template>

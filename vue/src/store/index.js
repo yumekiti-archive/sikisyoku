@@ -9,8 +9,9 @@ export default new Vuex.Store({
         data: [],
     },
     mutations: {
-        set: (state, response) => {
-            state.data = response.data;
+        set: (state, {response, url}) => {
+            state.data = [url];
+            state.data[url] = response.data;
         },
     },
     actions: {
@@ -18,7 +19,8 @@ export default new Vuex.Store({
             await axios
                 .get('/api/' + url)
                 .then( response =>{
-                    commit('set', response);
+                    let url = response.config.url.replace('/api/', '');
+                    commit('set', {response: response, url: url});
                 })
                 .catch(error => {
                     console.log(error);

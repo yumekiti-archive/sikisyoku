@@ -13,9 +13,9 @@
         </v-row>
 
         <v-row class="card">
-            <v-col cols="6" md="4" v-for="(food, i) in this.searchData" :key="i">
-                <v-card :to="'food/' + String(food.id)">
-                    <v-img max-height="300" :src="food.image" />
+            <v-col cols="6" md="3" v-for="(food, i) in this.searchData" :key="i">
+                <v-card :to="'/food/' + String(food.id)">
+                    <v-img max-height="300" :src="'/' + food.image" />
                     <v-card-title>
                         {{food.name}}
                     </v-card-title>
@@ -34,16 +34,21 @@
         }),
         computed: {
             data() {
-                return this.$store.state.data
+                return this.$store.state.data.food
             },
             searchData(){
-                return this.data.filter(data => {
-                    return data.name.includes(this.search)
-                })
+                if(this.data){
+                    return this.data.filter(data => {
+                        return data.name.includes(this.search);
+                    })
+                }else return '';
             }
         },
         created(){
             this.$store.dispatch('get', {url: 'food'});
+        },
+        watch: {
+            data(){}
         },
     }
 </script>

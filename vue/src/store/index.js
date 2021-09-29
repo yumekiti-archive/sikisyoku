@@ -17,9 +17,8 @@ export default new Vuex.Store({
     actions: {
         async get({ commit }, {url: url}){
             await axios
-                .get('/api/' + url)
+                .get('/api/' + url, {url: url})
                 .then( response =>{
-                    let url = response.config.url.replace('/api/', '');
                     commit('set', {response: response, url: url});
                 })
                 .catch(error => {

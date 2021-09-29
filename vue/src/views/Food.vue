@@ -1,5 +1,5 @@
 <template>
-    <v-container v-if="this.food">
+    <v-container v-if="this.data">
 
         <v-row>
             <v-col cols="12">
@@ -12,41 +12,32 @@
             </v-col>
         </v-row>
 
-        <v-row class="card">
-            <v-col cols="6" md="2" v-for="(food, i) in this.color" :key="i">
-                <v-card :to="'/food/' + String(food.id)">
-                    <v-img max-height="300" :src="'/' + food.image" />
-                    <v-card-title>
-                        {{food.name}}
-                    </v-card-title>
-                </v-card>
-            </v-col>
-        </v-row>
+        <FoodList :foods="this.color" />
 
     </v-container>
 </template>
 
 <script>
-  export default {
-    name: 'Food',
-    computed: {
-        data() {
-            return this.$store.state.data.food;
+    import FoodList from '@/components/FoodList'
+
+    export default {
+        name: 'Food',
+        components: {
+            FoodList,
         },
-        food() {
-            if(this.data) return this.data.filter(data => data.id == this.$route.params.id)[0];
-            else return '';
+        computed: {
+            data() {
+                return this.$store.state.data.food;
+            },
+            food() {
+                return this.data.filter(data => data.id == this.$route.params.id)[0];
+            },
+            color() {
+                return this.data.filter(data => data.color != this.food.color);
+            },
         },
-        color() {
-            if(this.data) return this.data.filter(data => data.color != this.food.color);
-            else return '';
+        created(){
+            this.$store.dispatch('get', {url: 'food'});
         },
-    },
-    created(){
-        this.$store.dispatch('get', {url: 'food'});
-    },
-    watch: {
-        data(){},
-    },
-  }
+    }
 </script>

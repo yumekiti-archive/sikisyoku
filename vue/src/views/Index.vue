@@ -1,5 +1,5 @@
 <template>
-    <v-container>
+    <v-container v-if="this.data">
 
         <v-row>
             <v-col cols="12">
@@ -12,23 +12,19 @@
             </v-col>
         </v-row>
 
-        <v-row class="card">
-            <v-col cols="6" md="3" v-for="(food, i) in this.searchData" :key="i">
-                <v-card :to="'/food/' + String(food.id)">
-                    <v-img max-height="300" :src="'/' + food.image" />
-                    <v-card-title>
-                        {{food.name}}
-                    </v-card-title>
-                </v-card>
-            </v-col>
-        </v-row>
+        <FoodList :foods="this.searchData" />
         
     </v-container>
 </template>
 
 <script>
+    import FoodList from '@/components/FoodList'
+
     export default {
         name: 'Index',
+        components: {
+            FoodList,
+        },
         data: () => ({
             search: '',
         }),
@@ -37,18 +33,13 @@
                 return this.$store.state.data.food
             },
             searchData(){
-                if(this.data){
-                    return this.data.filter(data => {
-                        return data.name.includes(this.search);
-                    })
-                }else return '';
+                return this.data.filter(data => {
+                    return data.name.includes(this.search);
+                })
             }
         },
         created(){
             this.$store.dispatch('get', {url: 'food'});
-        },
-        watch: {
-            data(){}
         },
     }
 </script>

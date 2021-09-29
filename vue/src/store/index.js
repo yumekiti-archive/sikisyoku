@@ -7,11 +7,13 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         data: [],
+        load: true,
     },
     mutations: {
         set: (state, {response, url}) => {
             state.data = [url];
             state.data[url] = response.data;
+            state.load = false;
         },
     },
     actions: {

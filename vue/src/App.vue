@@ -17,6 +17,10 @@
     </v-app-bar>
 
     <v-main>
+      <v-progress-linear
+        indeterminate
+        v-if="this.$store.state.load"
+      ></v-progress-linear>
       <router-view/>
     </v-main>
   </v-app>

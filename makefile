@@ -1,65 +1,25 @@
-UID := $(shell id -u)
-GID := $(shell id -g)
-USER := $(UID):$(GID)
-dc := user=$(USER) docker-compose -f ./docker/docker-compose.yml
+dc := docker-compose -f ./docker-compose.yml
 
-.PHONY: init
-init:
-	$(dc) up -d --build
-	bash ./docker/php/sql.sh
-	$(dc) exec php /bin/bash -c "composer install"
-	$(dc) exec php /bin/bash -c "cp .env.example .env"
-	$(dc) exec php /bin/bash -c "php artisan key:generate"
-	$(dc) exec php /bin/bash -c "php artisan migrate"
-
-.PHONY: up
 up:
-	$(dc) up -d --build
-	bash ./docker/php/sql.sh
+	$(dc) up -d
 
-.PHONY: down
 down:
 	$(dc) down
 
-.PHONY: restart
 restart:
 	$(dc) restart
 
-.PHONY: rm
+reup:
+	@make down
+	@make up
+
 rm:
 	$(dc) down --rmi all
 
-.PHONY: logs
 logs:
 	$(dc) logs -f
 
-.PHONY: db
-db:
-	$(dc) exec db /bin/sh
+app:
+	$(dc) exec app /bin/sh
 
-.PHONY: php
-php:
-	$(dc) exec php /bin/sh
-
-.PHONY: nginx
-nginx:
-	$(dc) exec nginx /bin/sh
-
-.PHONY: laravel6
-laravel6:
-	mkdir -p ./laravel
-	@make up
-	$(dc) exec php composer create-project --prefer-dist laravel/laravel . "6.*"
-
-.PHONY: seed
-seed:
-	$(dc) -f ./docker/docker-compose.yml exec php php artisan db:seed
-
-.PHONY: fresh
-fresh:
-	$(dc) -f ./docker/docker-compose.yml exec php php artisan migrate:fresh --seed
-
-.PHONY: docker-rm
-docker-rm:
-	docker stop `docker ps -aq` ;
-	docker rm `docker ps -aq`
+.PHONY:	setup up down restart reup rm logs app db

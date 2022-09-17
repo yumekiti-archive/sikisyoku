@@ -1,6 +1,0 @@
-FROM node:14.17.0
-
-RUN npm install -g npm && \
-	npm install -g @vue/cli
-
-CMD ["/bin/sh"]

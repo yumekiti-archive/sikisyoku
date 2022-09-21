@@ -1,9 +1,20 @@
-import React from 'react';
+import { FC } from 'react';
+import { Routes, Route } from "react-router-dom";
 
-function App() {
+import Header from './components/Header';
+import Home from './page/Home';
+import Item from './page/Item';
+
+const App: FC = () => {
   return (
-    <h1>Hello, world!</h1>
-  );
+    <>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/:id" element={<Item />} />
+      </Routes>
+    </>
+  )
 }
 
 export default App;
